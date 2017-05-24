@@ -1,0 +1,9 @@
+node_modules/**/**
+
+**/*.map
+
+src/**/*.css
+
+src/**/*.min.js
+
+dist/**/*

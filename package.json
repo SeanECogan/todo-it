@@ -1,0 +1,41 @@
+{
+  "name": "todo-it",
+  "version": "1.0.0",
+  "description": "A simple and useful todo list application.",
+  "main": "src/app/app.js",
+  "scripts": {
+    "build-debug-css": "cd src && node-sass app/app.scss --output-style compressed app.min.css",
+    "watch-debug-css": "cd src && nodemon -e scss -x \"npm run build-debug-css\"",
+    "build-debug-js": "cd src && uglifyjs app/todo-it.js app/navbar/navbar.js -c -m --source-map root='http://localhost:3000',url=app.min.js.map -o app.min.js",
+    "watch-debug-js": "cd src && nodemon -e js -x \"npm run build-debug-js\"",
+    "build-debug": "npm run build-debug-css && npm run build-debug-js",
+    "watch-debug": "npm run watch-debug-css && npm run watch-debug-js",
+    "debug-server": "npm run build-debug && concurrently --kill-others \"http-server src -p 3000\" \"npm run watch-debug\"",
+    "build-prod-css": "cd src && node-sass app/app.scss --output-style compressed ../dist/app.min.css",
+    "watch-prod-css": "cd src && nodemon -e scss -x \"npm run build-prod-css\"",
+    "build-prod-js": "cd src && uglifyjs app/todo-it.js app/navbar/navbar.js -c -m -o ../dist/app.min.js",
+    "watch-prod-js": "cd src && nodemon -e js -x \"npm run build-prod-js\"",
+    "build-prod": "npm run build-prod-css && npm run build-prod-js",
+    "watch-prod": "npm run watch-prod-css && npm run watch-prod-js",
+    "prod-server": "npm run build-prod && concurrently --kill-others \"http-server dist -p 3001\" \"npm run watch-prod\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeanECogan/todo-it.git"
+  },
+  "author": "Sean Cogan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SeanECogan/todo-it/issues"
+  },
+  "homepage": "https://github.com/SeanECogan/todo-it#readme",
+  "devDependencies": {
+    "angular": "^1.6.4",
+    "concurrently": "^3.4.0",
+    "copyfiles": "^1.2.0",
+    "http-server": "^0.10.0",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
+    "uglify-js": "^3.0.11"
+  }
+}
