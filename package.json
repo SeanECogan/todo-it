@@ -6,18 +6,17 @@
   "scripts": {
     "build-debug-css": "cd src && node-sass app/app.scss --output-style compressed app.min.css",
     "watch-debug-css": "cd src && nodemon -e scss -x \"npm run build-debug-css\"",
-    "build-debug-js": "cd src && uglifyjs app/todo-it.js app/navbar/navbar.js -c -m --source-map root='http://localhost:3000',url=app.min.js.map -o app.min.js",
-    "watch-debug-js": "cd src && nodemon -e js -x \"npm run build-debug-js\"",
+    "build-debug-js": "cd src && uglifyjs app/todo-it.js app/navbar/directive.js app/navbar/navbar-items/text-directive.js app/todo/controller.js app/todo/directive.js app/todo/todo-item/directive.js -c -m --source-map root='http://localhost:3000',url=app.min.js.map -o app.min.js",
+    "watch-debug-js": "cd src && nodemon --ignore *.min.js -e js -x \"npm run build-debug-js\"",
     "build-debug": "npm run build-debug-css && npm run build-debug-js",
-    "watch-debug": "npm run watch-debug-css && npm run watch-debug-js",
-    "debug-server": "npm run build-debug && concurrently --kill-others \"http-server src -p 3000\" \"npm run watch-debug\"",
+    "debug-server": "npm run build-debug && concurrently --kill-others \"http-server src -p 3000\" \"npm run watch-debug-css\" \"npm run watch-debug-js\"",
     "build-prod-css": "cd src && node-sass app/app.scss --output-style compressed ../dist/app.min.css",
     "watch-prod-css": "cd src && nodemon -e scss -x \"npm run build-prod-css\"",
-    "build-prod-js": "cd src && uglifyjs app/todo-it.js app/navbar/navbar.js -c -m -o ../dist/app.min.js",
+    "build-prod-js": "cd src && uglifyjs app/todo-it.js app/navbar/directive.js app/navbar/navbar-items/text-directive.js app/todo/controller.js app/todo/directive.js app/todo/todo-item/directive.js -c -m -o ../dist/app.min.js",
     "watch-prod-js": "cd src && nodemon -e js -x \"npm run build-prod-js\"",
-    "build-prod": "npm run build-prod-css && npm run build-prod-js",
-    "watch-prod": "npm run watch-prod-css && npm run watch-prod-js",
-    "prod-server": "npm run build-prod && concurrently --kill-others \"http-server dist -p 3001\" \"npm run watch-prod\""
+    "copy-prod-files": "cd src && copyfiles **/*.html ../dist && copyfiles lib/**/* ../dist  && copyfiles fonts/**/* ../dist",
+    "build-prod": "npm run build-prod-css && npm run build-prod-js && npm run copy-prod-files",
+    "prod-server": "npm run build-prod && concurrently --kill-others \"http-server dist -p 3001\" \"npm run watch-prod-css\" \"npm run watch-prod-js\""
   },
   "repository": {
     "type": "git",

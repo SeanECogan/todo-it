@@ -1,1 +1,5 @@
-alert("Hello world!");
+'use strict';
+
+angular
+.module('todo-it',
+        []);

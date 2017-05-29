@@ -1,0 +1,81 @@
+.todo-item {
+    width: 100%;
+    margin-bottom: 15px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    label {
+        float: left;
+    }
+
+    input[type='checkbox'] {     
+        position: relative;
+        display: none;
+    }
+
+    input[type='checkbox'] + span {
+        font-family: FontAwesome;
+        cursor: pointer;
+        color: $secondary;
+        font-size: 32px;
+        float: left;
+        position: relative;
+        top: 5px;
+    }
+
+    input[type='checkbox'] + span:after {
+        content: "\f096"; /* In fontawesome, is an open square (fa-square-o) */
+    }
+
+    input[type='checkbox']:checked + span:after {
+        content: "\f046"; /* fontawesome checked box (fa-check-square-o) */
+    }
+
+    input[type='text'] {
+        width: calc(100% - 40px);
+        border: none;
+        float: right;
+        height: 36px;
+        font-size: 32px;
+
+        &:not(:valid) {
+            background-color: $very-light-gray;
+        }
+
+         &:hover {
+            background-color: $very-light-gray;
+            
+            outline: none;
+        }
+
+        &:focus {
+            background-color: $very-light-gray;
+            
+            outline: none;
+        }
+    }
+
+    .float-clear {
+        clear: both;
+    }
+
+    &.complete {
+         input[type='checkbox'] + span {
+            cursor: default;
+            color: $light-gray;
+        }
+
+        input[type='text'] {
+            color: $light-gray;
+            font-style: italic;
+            text-decoration: line-through;
+            border: none;    
+            background-color: $pure-white;
+        }
+    }
+}

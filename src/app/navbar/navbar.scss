@@ -1,0 +1,12 @@
+.navbar {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    background-color: $primary;
+
+    .navbar-text {
+        font-size: 28px;
+        color: $pure-white;
+    }
+}

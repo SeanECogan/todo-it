@@ -1,0 +1,16 @@
+<div class="container todo">
+    <h1>TODO</h1>
+
+    <todo-item ng-show="hasIncompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'false'}" todo-item="todoItem"></todo-item>
+    <p ng-show="!hasIncompleteTodoItems() && !hasCompleteTodoItems()">Nothing to do? Try adding something!</p>
+    <p ng-show="!hasIncompleteTodoItems() && hasCompleteTodoItems()">You're all done! Nice work!</p>
+
+    <button ng-click="addTodoItem()">ADD NEW ITEM</button>
+
+    <div class="spacer"></div>
+
+    <h1>DONE</h1>
+
+    <todo-item ng-show="hasCompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'}" todo-item="todoItem"></todo-item>
+    <p ng-show="hasIncompleteTodoItems() && !hasCompleteTodoItems()">Nothing done yet? That's ok, keep working at it!</p>
+</div>

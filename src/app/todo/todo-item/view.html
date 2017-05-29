@@ -1,0 +1,8 @@
+<div class='todo-item' ng-class="todoItem.isComplete ? 'complete' : ''">
+    <label>
+        <input type="checkbox" ng-model="todoItem.isComplete" ng-disabled="todoItem.isComplete"/>
+        <span></span>
+    </label>
+    <input type="text" ng-model="todoItem.text" required ng-readonly="todoItem.isComplete" />
+    <div class="float-clear"></div>
+</div>
