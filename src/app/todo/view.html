@@ -1,7 +1,7 @@
 <div class="container todo">
     <h1>TODO</h1>
 
-    <todo-item ng-show="hasIncompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'false'}" todo-item="todoItem" remove-todo-item="removeTodoItem()"></todo-item>
+    <todo-item ng-show="hasIncompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'false'}" todo-item="todoItem" remove-todo-item="removeTodoItem(todoItem)"></todo-item>
     <p ng-show="!hasIncompleteTodoItems() && !hasCompleteTodoItems()">Nothing to do? Try adding something!</p>
     <p ng-show="!hasIncompleteTodoItems() && hasCompleteTodoItems()">You're all done! Nice work!</p>
 
@@ -11,6 +11,6 @@
 
     <h1>DONE</h1>
 
-    <todo-item ng-show="hasCompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'}" todo-item="todoItem" remove-todo-item="removeTodoItem()"></todo-item>
+    <todo-item ng-show="hasCompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'}" todo-item="todoItem" remove-todo-item="removeTodoItem(todoItem)"></todo-item>
     <p ng-show="hasIncompleteTodoItems() && !hasCompleteTodoItems()">Nothing done yet? That's ok, keep working at it!</p>
 </div>
