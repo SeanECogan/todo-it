@@ -4,7 +4,7 @@
         <input type="checkbox" ng-model="todoItem.isComplete" />
         <span></span>
     </label>
-    <textarea ng-model="todoItem.text" msd-elastic required ng-readonly="todoItem.isComplete"></textarea>    
+    <textarea ng-model="todoItem.text" msd-elastic required ng-readonly="todoItem.isComplete" todo-blur></textarea>    
     <div class="float-clear"></div>
 </div>
     <i class="fa fa-close todo-delete" ng-click="removeTodoItem()"></i>
