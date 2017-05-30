@@ -2,4 +2,4 @@
 
 angular
 .module('todo-it',
-        []);
+        ['monospaced.elastic']);

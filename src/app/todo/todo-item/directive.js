@@ -9,7 +9,8 @@ angular
                    replace: true,
                    templateUrl: 'app/todo/todo-item/view.html',
                    scope: {
-                       todoItem: '='
+                       todoItem: '=',
+                       removeTodoItem: '&'
                    }
                };
            });

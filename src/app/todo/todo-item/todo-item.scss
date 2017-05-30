@@ -1,6 +1,8 @@
 .todo-item {
     width: 100%;
     margin-bottom: 15px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -8,6 +10,10 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    &:hover {
+        border-bottom: 1px solid $secondary;
+    }
 
     label {
         float: left;
@@ -25,7 +31,7 @@
         font-size: 32px;
         float: left;
         position: relative;
-        top: 5px;
+        top: 8px;
     }
 
     input[type='checkbox'] + span:after {
@@ -36,12 +42,20 @@
         content: "\f046"; /* fontawesome checked box (fa-check-square-o) */
     }
 
-    input[type='text'] {
+    textarea {
         width: calc(100% - 40px);
         border: none;
         float: right;
-        height: 36px;
+        height: 40px;
         font-size: 32px;
+        overflow: hidden;
+        overflow-y: hidden;
+        word-wrap: break-word;
+        resize: none;
+        font-family: inherit;
+        padding: 0;
+        padding-left: 3px;
+        padding-right: 3px;
 
         &:not(:valid) {
             background-color: $very-light-gray;
@@ -66,16 +80,38 @@
 
     &.complete {
          input[type='checkbox'] + span {
-            cursor: default;
             color: $light-gray;
         }
 
-        input[type='text'] {
+        textarea {
             color: $light-gray;
             font-style: italic;
             text-decoration: line-through;
             border: none;    
             background-color: $pure-white;
         }
+    }
+}
+
+.todo-item:hover + .fa.fa-close.todo-delete, .fa.fa-close.todo-delete:hover {
+    opacity: 100;
+}
+
+.fa.fa-close.todo-delete {
+    opacity: 0;
+    float: right;
+    position: relative;
+    font-size: 32px;
+    top: -53px;
+    right: -8px;
+    width: 0;
+    overflow: visible;
+    color: $very-light-gray;
+    
+    transition: opacity 0.25s ease;
+
+    &:hover {
+        cursor: pointer;
+        color: $light-gray;
     }
 }
