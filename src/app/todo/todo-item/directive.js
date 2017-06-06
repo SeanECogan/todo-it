@@ -10,6 +10,9 @@ angular
                    templateUrl: 'app/todo/todo-item/view.html',
                    scope: {
                        todoItem: '=',
+                       updateTodoItem: '&',
+                       moveUpTodoItem: '&',
+                       moveDownTodoItem: '&',
                        removeTodoItem: '&'
                    }
                };

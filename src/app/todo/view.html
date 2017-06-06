@@ -1,7 +1,15 @@
 <div class="container todo">
     <h1>TODO</h1>
 
-    <todo-item ng-show="hasIncompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'false'}" todo-item="todoItem" remove-todo-item="removeTodoItem(todoItem)"></todo-item>
+    <todo-item 
+        ng-show="hasIncompleteTodoItems()"
+        ng-repeat="todoItem in todoItems | filter:{isComplete : 'false'} | orderBy:'order'"
+        todo-item="todoItem"
+        update-todo-item="updateTodoItem(todoItem)"
+        move-up-todo-item="moveUpTodoItem(todoItem)"
+        move-down-todo-item="moveDownTodoItem(todoItem)"
+        remove-todo-item="removeTodoItem(todoItem)">
+    </todo-item>
     <p ng-show="!hasIncompleteTodoItems() && !hasCompleteTodoItems()">Nothing to do? Try adding something!</p>
     <p ng-show="!hasIncompleteTodoItems() && hasCompleteTodoItems()">You're all done! Nice work!</p>
 
@@ -10,8 +18,16 @@
     <div class="spacer"></div>
 
     <h1>DONE</h1>
-    
+
     <todo-progress todo-items="todoItems"></todo-progress>
-    <todo-item ng-show="hasCompleteTodoItems()" ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'}" todo-item="todoItem" remove-todo-item="removeTodoItem(todoItem)"></todo-item>
+    <todo-item
+        ng-show="hasCompleteTodoItems()"
+        ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'} | orderBy:'lastUpdated'"
+        todo-item="todoItem"
+        update-todo-item="updateTodoItem(todoItem)"
+        move-up-todo-item="moveUpTodoItem(todoItem)"
+        move-down-todo-item="moveDownTodoItem(todoItem)"
+        remove-todo-item="removeTodoItem(todoItem)">
+    </todo-item>
     <p ng-show="hasIncompleteTodoItems() && !hasCompleteTodoItems()">Nothing done yet? That's ok, keep working at it!</p>
 </div>

@@ -93,8 +93,32 @@
     }
 }
 
-.todo-item:hover + .fa.fa-close.todo-delete, .fa.fa-close.todo-delete:hover {
-    opacity: 100;
+.todo-item:hover ~ .fa.fa-close.todo-delete, .fa.fa-close.todo-delete:hover,
+.todo-item:hover ~ .order-icons, .order-icons:hover,
+.todo-item:hover ~ .order-icons, .order-icons:hover {
+    opacity: 1;
+}
+
+.order-icons {
+    float: left;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: visible;
+    position: relative;
+    left: -25px;
+    top: -70px;
+
+    .fa.fa-caret-up, .fa.fa-caret-down {
+        font-size: 32px;
+        color: $very-light-gray;  
+        transition: opacity 0.25s ease;
+
+        &:hover {
+            cursor: pointer;
+            color: $light-gray;
+        }
+    }
 }
 
 .fa.fa-close.todo-delete {

@@ -1,11 +1,16 @@
 <div>
     <div class='todo-item' ng-class="todoItem.isComplete ? 'complete' : ''">
-    <label>
-        <input type="checkbox" ng-model="todoItem.isComplete" />
-        <span></span>
-    </label>
-    <textarea ng-model="todoItem.text" msd-elastic required ng-readonly="todoItem.isComplete" todo-blur></textarea>    
-    <div class="float-clear"></div>
-</div>
+        <label>
+            <input type="checkbox" ng-model="todoItem.isComplete" ng-click="updateTodoItem()" />
+            <span></span>
+        </label>
+        <textarea ng-model="todoItem.text" msd-elastic required ng-readonly="todoItem.isComplete" todo-blur></textarea>
+        <div class="float-clear"></div>
+    </div>
+    <div ng-if="!todoItem.isComplete" class="order-icons">
+        <i class="fa fa-caret-up" ng-click="moveUpTodoItem()"></i>
+        <br />
+        <i class="fa fa-caret-down" ng-click="moveDownTodoItem()"></i>
+    </div>
     <i class="fa fa-close todo-delete" ng-click="removeTodoItem()"></i>
 </div>
