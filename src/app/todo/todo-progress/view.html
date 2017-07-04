@@ -1,4 +1,4 @@
 <div class="todo-progress">
-    <div ng-show="((todoItems | filter:{isComplete : 'true'}).length + (todoItems | filter:{isComplete : 'false'}).length) <= 0" class="progress-bar" style="width: 0%;"></div>
-    <div ng-show="((todoItems | filter:{isComplete : 'true'}).length + (todoItems | filter:{isComplete : 'false'}).length) > 0" class="progress-bar" style="width: {{((todoItems | filter:{isComplete : 'true'}).length / ((todoItems | filter:{isComplete : 'true'}).length + (todoItems | filter:{isComplete : 'false'}).length)) *100}}%;"></div>
+    <div ng-show="((todoItems | completedItems).length + (todoItems | incompleteItems).length) <= 0" class="progress-bar" style="width: 0%;"></div>
+    <div ng-show="((todoItems | completedItems).length + (todoItems | incompleteItems).length) > 0" class="progress-bar" style="width: {{((todoItems | completedItems).length / ((todoItems | completedItems).length + (todoItems | incompleteItems).length)) *100}}%;"></div>
 </div>
