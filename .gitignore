@@ -7,3 +7,5 @@ src/**/*.css
 src/**/*.min.js
 
 dist/**/*
+
+.vscode/settings.json
