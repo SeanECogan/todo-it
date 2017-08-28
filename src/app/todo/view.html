@@ -22,7 +22,7 @@
     <todo-progress todo-items="todoItems"></todo-progress>
     <todo-item
         ng-show="hasCompleteTodoItems()"
-        ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'} | orderBy:'lastUpdated'"
+        ng-repeat="todoItem in todoItems | filter:{isComplete : 'true'} | orderBy:'order'"
         todo-item="todoItem"
         update-todo-item="updateTodoItem(todoItem)"
         move-up-todo-item="moveUpTodoItem(todoItem)"
