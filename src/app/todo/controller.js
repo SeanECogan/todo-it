@@ -32,7 +32,22 @@ angular
                 }
 
                 function updateTodoItem(todoItem) {
-                    todoItem.lastUpdated = new Date();
+                    if (todoItem.isComplete && 
+                        todoItem.isComplete == true) {
+                        fillInTodoItems(todoItem);
+
+                        var completedOrder = 0;
+                        
+                        $scope.todoItems.map(function(completedTodoItem) {
+                            if (completedTodoItem.isComplete &&
+                                completedTodoItem.order > completedOrder &&
+                                completedTodoItem != todoItem) {
+                                completedOrder = completedTodoItem.order;
+                            }
+                        });
+
+                        todoItem.order = completedOrder + 1;
+                    }
                 }
 
                 function moveUpTodoItem(todoItem) {
@@ -44,7 +59,9 @@ angular
                 }
 
                 function moveDownTodoItem(todoItem) {
-                    if (todoItem.order < $scope.todoItems.length) {
+                    if (todoItem.order < $scope.todoItems.filter(function(todoItem) {
+                            return !todoItem.isComplete;
+                        }).length) {
                         todoItem.order++;
 
                         adjustTodoItemsUp(todoItem);
@@ -52,6 +69,8 @@ angular
                 }
 
                 function removeTodoItem(todoItem) {
+                    fillInTodoItems(todoItem);
+
                     $scope.todoItems.splice($scope.todoItems.indexOf(todoItem), 1);
                 }
 
@@ -70,7 +89,8 @@ angular
                 function adjustTodoItemsDown(todoItem) {
                     $scope.todoItems.map(function(currentTodoItem) {
                         if(currentTodoItem != todoItem &&
-                           currentTodoItem.order == todoItem.order) {
+                           currentTodoItem.order == todoItem.order &&
+                           !currentTodoItem.isComplete) {
                             currentTodoItem.order++;
 
                             adjustTodoItemsDown(currentTodoItem);
@@ -81,10 +101,21 @@ angular
                 function adjustTodoItemsUp(todoItem) {
                     $scope.todoItems.map(function(currentTodoItem) {
                         if(currentTodoItem != todoItem &&
-                           currentTodoItem.order == todoItem.order) {
+                           currentTodoItem.order == todoItem.order &&
+                           !currentTodoItem.isComplete) {
                             currentTodoItem.order--;
 
                             adjustTodoItemsUp(currentTodoItem);
+                        }
+                    });
+                }
+
+                function fillInTodoItems(todoItem) {
+                    $scope.todoItems.map(function(currentTodoItem) {
+                        if(currentTodoItem != todoItem &&
+                           currentTodoItem.order >= todoItem.order &&
+                           !currentTodoItem.isComplete) {
+                            currentTodoItem.order--;
                         }
                     });
                 }
