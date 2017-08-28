@@ -4,7 +4,7 @@
             <input type="checkbox" ng-model="todoItem.isComplete" ng-click="updateTodoItem()" ng-disabled="!todoItem.text" />
             <span></span>
         </label>
-        <textarea ng-model="todoItem.text" msd-elastic required ng-readonly="todoItem.isComplete" todo-blur todo-focus></textarea>
+        <textarea ng-model="todoItem.text" msd-elastic required ng-readonly="todoItem.isComplete" todo-auto-add todo-blur todo-focus></textarea>
         <div class="float-clear"></div>
     </div>
     <div ng-if="!todoItem.isComplete && todoItem.text" class="order-icons">
